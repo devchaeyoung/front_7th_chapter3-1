@@ -1,7 +1,7 @@
+import { useState, type ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
-import { FormTextarea } from './FormTextarea';
-import type { ComponentProps } from 'react';
+
+import { FormTextarea } from '@/components/molecules/FormTextarea';
 
 type FormTextareaStoryArgs = Omit<
   ComponentProps<typeof FormTextarea>,

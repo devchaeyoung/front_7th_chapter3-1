@@ -1,7 +1,7 @@
+import { useState, type ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FormSelect } from './FormSelect';
-import { useState } from 'react';
-import type { ComponentProps } from 'react';
+
+import { FormSelect } from '@/components/molecules/FormSelect';
 
 const SELECT_OPTIONS = [
   { value: 'option1', label: 'Option 1' },

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from './Button';
-import { FlexRow, FlexRowCenter } from '../../stories/utils';
+
+import { Button } from '@/components/atoms/Button';
+import { FlexRow, FlexRowCenter } from '@/stories/utils';
 
 const meta = {
   title: 'Atoms/Button',
@@ -16,7 +17,7 @@ export const Default: Story = {
   },
 };
 
-export const AllVariants: Story = {
+export const AllVariants = {
   render: () => (
     <FlexRow>
       <Button variant="primary">Primary</Button>
@@ -27,7 +28,7 @@ export const AllVariants: Story = {
   ),
 };
 
-export const AllSizes: Story = {
+export const AllSizes = {
   render: () => (
     <FlexRowCenter>
       <Button size="sm">Small</Button>

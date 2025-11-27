@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Alert } from './Alert';
 import { useState } from 'react';
-import { FlexCol } from '../../stories/utils';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { Alert } from '@/components/organisms/Alert';
+import { FlexCol } from '@/stories/utils';
 
 const meta = {
   title: 'Organisms/Alert',
@@ -17,7 +18,7 @@ export const Default: Story = {
   },
 };
 
-export const AllVariants: Story = {
+export const AllVariants = {
   render: () => (
     <FlexCol className="w-[400px]">
       <Alert variant="info" title="Info">This is an info alert message.</Alert>
@@ -44,7 +45,7 @@ export const WithoutIcon: Story = {
   },
 };
 
-export const Closable: Story = {
+export const Closable = {
   render: () => {
     const [show, setShow] = useState(true);
     if (!show) return <button onClick={() => setShow(true)}>Show Alert</button>;

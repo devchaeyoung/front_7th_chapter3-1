@@ -1,7 +1,7 @@
+import { useState, type ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FormCheckbox } from './FormCheckbox';
-import { useState } from 'react';
-import type { ComponentProps } from 'react';
+
+import { FormCheckbox } from '@/components/molecules/FormCheckbox';
 
 type FormCheckboxStoryArgs = Omit<
   ComponentProps<typeof FormCheckbox>,

@@ -1,8 +1,8 @@
+import { useState, type ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FormInput } from './FormInput';
-import { useState } from 'react';
-import { FlexColGap4 } from '../../stories/utils';
-import type { ComponentProps } from 'react';
+
+import { FormInput } from '@/components/molecules/FormInput';
+import { FlexColGap4 } from '@/stories/utils';
 
 type FormInputStoryArgs = Omit<
   ComponentProps<typeof FormInput>,
@@ -82,7 +82,7 @@ export const Disabled: Story = {
   },
 };
 
-export const AllWidths: Story = {
+export const AllWidths = {
   render: () => {
     const [value1, setValue1] = useState('');
     const [value2, setValue2] = useState('');

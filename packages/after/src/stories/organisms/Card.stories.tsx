@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Card } from './Card';
-import { Button } from '../atoms/Button';
-import { FlexColGap4, FlexRow } from '../../stories/utils';
+
+import { Card } from '@/components/organisms/Card';
+import { Button } from '@/components/atoms/Button';
+import { FlexColGap4, FlexRow } from '@/stories/utils';
 
 const meta = {
   title: 'Organisms/Card',
@@ -32,7 +33,7 @@ export const WithTitleAndSubtitle: Story = {
   },
 };
 
-export const AllVariants: Story = {
+export const AllVariants = {
   render: () => (
     <FlexColGap4 className="w-[400px]">
       <Card variant="default" title="Default Card">

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge } from './Badge';
-import { FlexRow, FlexRowCenter } from '../../stories/utils';
+
+import { Badge } from '@/components/atoms/Badge';
+import { FlexRow, FlexRowCenter } from '@/stories/utils';
 
 const meta = {
   title: 'Atoms/Badge',
@@ -16,7 +17,7 @@ export const Default: Story = {
   },
 };
 
-export const AllTypes: Story = {
+export const AllTypes = {
   render: () => (
     <FlexRow>
       <Badge type="primary">Primary</Badge>
@@ -29,7 +30,7 @@ export const AllTypes: Story = {
   ),
 };
 
-export const AllSizes: Story = {
+export const AllSizes = {
   render: () => (
     <FlexRowCenter>
       <Badge size="small">Small</Badge>
@@ -39,7 +40,7 @@ export const AllSizes: Story = {
   ),
 };
 
-export const Pill: Story = {
+export const Pill = {
   render: () => (
     <FlexRow>
       <Badge pill>Pill Badge</Badge>

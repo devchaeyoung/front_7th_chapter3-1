@@ -1,9 +1,9 @@
+import { useState, type ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Modal } from './Modal';
-import { Button } from '../atoms/Button';
-import { useState } from 'react';
-import { FlexRow } from '../../stories/utils';
-import type { ComponentProps } from 'react';
+
+import { Modal } from '@/components/organisms/Modal';
+import { Button } from '@/components/atoms/Button';
+import { FlexRow } from '@/stories/utils';
 
 type ModalStoryArgs = Omit<
   ComponentProps<typeof Modal>,
@@ -43,7 +43,7 @@ export const WithoutTitle: Story = {
   },
 };
 
-export const AllSizes: Story = {
+export const AllSizes = {
   render: () => {
     const [size, setSize] = useState<'small' | 'medium' | 'large'>('medium');
     const [isOpen, setIsOpen] = useState(false);
