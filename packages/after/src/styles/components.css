@@ -3,126 +3,13 @@
   padding:0;
 }
 
-/* Button styles */
-.btn {
-  display: inline-block;
-  font-family: Arial, sans-serif;
-  font-weight: normal;
-  line-height: 1.5;
-  border-radius: 3px;
-  cursor: pointer;
-  border: 1px solid;
-  white-space: nowrap;
-}
-
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-primary {
-  background-color: #1976d2;
-  color: #fff;
-  border-color: #1565c0;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background-color: #1565c0;
-}
-
-.btn-secondary {
-  background-color: #f5f5f5;
-  color: #333;
-  border-color: #ddd;
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background-color: #e0e0e0;
-}
-
-.btn-danger {
-  background-color: #d32f2f;
-  color: #fff;
-  border-color: #c62828;
-}
-
-.btn-danger:hover:not(:disabled) {
-  background-color: #c62828;
-}
-
-.btn-success {
-  background-color: #388e3c;
-  color: #fff;
-  border-color: #2e7d32;
-}
-
-.btn-success:hover:not(:disabled) {
-  background-color: #2e7d32;
-}
-
-.btn-sm {
-  padding: 6px 12px;
-  font-size: 13px;
-}
-
-.btn-md {
-  padding: 10px 20px;
-  font-size: 14px;
-}
-
-.btn-lg {
-  padding: 12px 24px;
-  font-size: 15px;
-}
-
-.btn-fullwidth {
-  width: 100%;
-}
+/* Button styles - MIGRATED TO TAILWIND (atoms/Button.tsx) */
 
 /* Form Input styles - MIGRATED TO TAILWIND (molecules/FormInput.tsx, FormSelect.tsx) */
 
 /* Card styles - MIGRATED TO TAILWIND (organisms/Card.tsx) */
 
-/* Badge styles */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  line-height: 1;
-  white-space: nowrap;
-  border-radius: 3px;
-}
-
-.badge-pill {
-  border-radius: 10px;
-}
-
-.badge-primary { background-color: #1976d2; color: #fff; }
-.badge-secondary { background-color: #757575; color: #fff; }
-.badge-success { background-color: #388e3c; color: #fff; }
-.badge-danger { background-color: #d32f2f; color: #fff; }
-.badge-warning { background-color: #f57c00; color: #fff; }
-.badge-info { background-color: #0288d1; color: #fff; }
-
-.badge-small {
-  padding: 0px 4px;
-  font-size: 0.625rem;
-  height: 16px;
-}
-
-.badge-medium {
-  padding: 0px 8px;
-  font-size: 0.75rem;
-  height: 20px;
-}
-
-.badge-large {
-  padding: 0px 10px;
-  font-size: 0.8125rem;
-  height: 24px;
-}
+/* Badge styles - MIGRATED TO TAILWIND (atoms/Badge.tsx) */
 
 /* Alert styles - MIGRATED TO TAILWIND (organisms/Alert.tsx) */
 

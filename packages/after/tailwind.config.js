@@ -6,6 +6,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./.storybook/**/*.{js,ts,jsx,tsx}", // Storybook 파일도 포함
   ],
   theme: {
     extend: {
