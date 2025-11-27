@@ -1,4 +1,5 @@
 import { tokens } from './src/styles/tokens'
+import tailwindcssAnimate from 'tailwindcss-animate'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -33,6 +34,6 @@ export default {
       height: tokens.height,
     },
   },
-  plugins: [],
+  plugins: [tailwindcssAnimate],
 }
 
