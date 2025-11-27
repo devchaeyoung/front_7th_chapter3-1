@@ -1,5 +1,7 @@
 # Chapter3-1. UI 컴포넌트 모듈화와 디자인 시스템
 
+https://devchaeyoung.github.io/front_7th_chapter3-1/
+
 ## 과제 목표
 
 **레거시 코드베이스를 현대적인 디자인 시스템으로 개편하는 실무 경험**
@@ -53,9 +55,9 @@
 
 ### 1. 디자인 시스템 구축
 - [x] TailwindCSS 설정 및 디자인 토큰 정의
-- [~] shadcn/ui 컴포넌트 설치 (Button, Input, Select ✅ / Card, Table, Dialog, Alert ⏳)
-- [x] CVA를 활용한 variants 패턴 적용 (Button, Badge 완료)
-- [~] 일관된 스타일 시스템 구축 (진행 중)
+- [~] shadcn/ui 컴포넌트 설치 (Button, Input, Select, Card, Table 등)
+- [x] CVA를 활용한 variants 패턴 적용
+- [~] 일관된 스타일 시스템 구축
 
 ### 2. Before 패키지 분석
 - [x] Before 패키지 실행 및 전체 코드 탐색
@@ -63,10 +65,10 @@
 - [x] 개선이 필요한 부분과 그 이유 정리
 
 ### 3. 컴포넌트 개편
-- [~] UI와 비즈니스 로직 분리 (Atoms, Molecules ✅ / Organisms ⏳)
-- [~] 순수한 UI 컴포넌트로 재구성 (Button, Badge, Form 컴포넌트 ✅)
-- [~] 일관된 컴포넌트 API 설계 (진행 중)
-- [~] 적절한 컴포넌트 구조 설계 (진행 중)
+- [~] UI와 비즈니스 로직 분리
+- [x] 순수한 UI 컴포넌트로 재구성
+- [~] 일관된 컴포넌트 API 설계
+- [~] 적절한 컴포넌트 구조 설계
 
 ---
 
@@ -156,6 +158,7 @@ if (checkBusinessRules && entityType === 'user') {
   }
 }
 ```
+
 ### 개편 과정에서 집중한 부분
 
 ### 사용한 기술 스택 경험
