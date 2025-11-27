@@ -14,9 +14,20 @@ interface ValidationOptions {
 export const useFieldValidation = (options: ValidationOptions = {}) => {
   const { fieldType = 'normal', entityType, checkBusinessRules = false } = options;
   const [error, setError] = useState('');
+  const [touched, setTouched] = useState(false);
 
-  const validate = useCallback((value: string) => {
+  const validate = useCallback((value: string, markTouched: boolean = true) => {
+    // 사용자가 입력을 시작했을 때만 touched로 표시
+    if (markTouched && value.length > 0) {
+      setTouched(true);
+    }
+
     setError('');
+
+    // 터치되지 않았다면 검증하지 않고 에러도 표시하지 않음
+    if (!touched && !(markTouched && value.length > 0)) {
+      return true;
+    }
 
     if (!value) return true;
 
@@ -84,16 +95,22 @@ export const useFieldValidation = (options: ValidationOptions = {}) => {
     }
 
     return true;
-  }, [fieldType, entityType, checkBusinessRules]);
+  }, [fieldType, entityType, checkBusinessRules, touched]);
 
   const clearError = useCallback(() => {
     setError('');
+    setTouched(false);
+  }, []);
+
+  const markAsTouched = useCallback(() => {
+    setTouched(true);
   }, []);
 
   return {
-    error,
+    error: touched ? error : '', // 터치되지 않았다면 에러를 반환하지 않음
     validate,
     clearError,
+    markAsTouched,
   };
 };
 

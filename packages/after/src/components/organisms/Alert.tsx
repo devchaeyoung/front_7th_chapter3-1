@@ -1,4 +1,10 @@
+import * as React from 'react';
 import { cn } from '@/lib/utils';
+import {
+  Alert as ShadcnAlert,
+  AlertTitle,
+  AlertDescription,
+} from '@/components/ui/alert';
 
 interface AlertProps {
   children: React.ReactNode;
@@ -34,21 +40,24 @@ export const Alert = ({
   };
 
   return (
-    <div
+    <ShadcnAlert
       className={cn(
-        'py-2.5 px-3 mb-4 rounded-[3px] border border-solid flex gap-2 items-start',
-        variantStyles[variant]
+        'py-2.5 px-3 mb-4 rounded-[3px] border border-solid flex gap-2 items-start relative',
+        variantStyles[variant],
+        '[&>svg]:hidden' // shadcn/ui의 SVG 아이콘 숨김
       )}
       style={{ fontFamily: 'Arial, sans-serif' }}
     >
       {showIcon && <div className="text-xl flex-shrink-0">{getIcon()}</div>}
       <div className="flex-1">
         {title && (
-          <div className="font-bold mb-1 text-[15px]">
+          <AlertTitle className="font-bold mb-1 text-[15px]">
             {title}
-          </div>
+          </AlertTitle>
         )}
-        <div className="text-sm leading-[1.5]">{children}</div>
+        <AlertDescription className="text-sm leading-[1.5]">
+          {children}
+        </AlertDescription>
       </div>
       {onClose && (
         <button
@@ -58,6 +67,6 @@ export const Alert = ({
           ×
         </button>
       )}
-    </div>
+    </ShadcnAlert>
   );
 };

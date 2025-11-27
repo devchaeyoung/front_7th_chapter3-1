@@ -91,6 +91,10 @@ export const ManagementPage = () => {
       await loadData();
       setIsCreateModalOpen(false);
       setFormData({});
+      // 생성 후 validation 초기화
+      usernameValidation.clearError();
+      emailValidation.clearError();
+      postTitleValidation.clearError();
       setAlertMessage(`${entityType === 'user' ? '사용자' : '게시글'}가 생성되었습니다`);
       setShowSuccessAlert(true);
     } catch (error: any) {
@@ -138,6 +142,10 @@ export const ManagementPage = () => {
       setIsEditModalOpen(false);
       setFormData({});
       setSelectedItem(null);
+      // 수정 후 validation 초기화
+      usernameValidation.clearError();
+      emailValidation.clearError();
+      postTitleValidation.clearError();
       setAlertMessage(`${entityType === 'user' ? '사용자' : '게시글'}가 수정되었습니다`);
       setShowSuccessAlert(true);
     } catch (error: any) {
@@ -413,6 +421,10 @@ export const ManagementPage = () => {
           onClose={() => {
             setIsCreateModalOpen(false);
             setFormData({});
+            // 모달 닫을 때 validation 초기화
+            usernameValidation.clearError();
+            emailValidation.clearError();
+            postTitleValidation.clearError();
           }}
           title={`새 ${entityType === 'user' ? '사용자' : '게시글'} 만들기`}
           size="large"
@@ -422,6 +434,10 @@ export const ManagementPage = () => {
               <Button variant="secondary" size="md" onClick={() => {
                 setIsCreateModalOpen(false);
                 setFormData({});
+                // 취소 버튼 클릭 시 validation 초기화
+                usernameValidation.clearError();
+                emailValidation.clearError();
+                postTitleValidation.clearError();
               }}>
                 취소
               </Button>
