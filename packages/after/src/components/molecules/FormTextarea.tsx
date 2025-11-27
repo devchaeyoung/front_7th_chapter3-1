@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Textarea Component - Yet another inconsistent API
 interface FormTextareaProps {
   name: string;
@@ -14,7 +12,7 @@ interface FormTextareaProps {
   rows?: number;
 }
 
-export const FormTextarea: React.FC<FormTextareaProps> = ({
+export const FormTextarea = ({
   name,
   value,
   onChange,
@@ -25,7 +23,7 @@ export const FormTextarea: React.FC<FormTextareaProps> = ({
   error,
   helpText,
   rows = 4,
-}) => {
+}: FormTextareaProps) => {
   const textareaClasses = ['form-textarea', error && 'error'].filter(Boolean).join(' ');
   const helperClasses = ['form-helper-text', error && 'error'].filter(Boolean).join(' ');
 

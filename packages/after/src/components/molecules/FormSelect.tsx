@@ -1,4 +1,3 @@
-import React from 'react';
 
 // Select Component - Inconsistent with Input component
 interface Option {
@@ -17,10 +16,10 @@ interface FormSelectProps {
   disabled?: boolean;
   error?: string;
   helpText?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'small' | 'medium' | 'large';
 }
 
-export const FormSelect: React.FC<FormSelectProps> = ({
+export const FormSelect = ({
   name,
   value,
   onChange,
@@ -31,8 +30,8 @@ export const FormSelect: React.FC<FormSelectProps> = ({
   disabled = false,
   error,
   helpText,
-  size = 'md',
-}) => {
+  size = 'medium',
+}: FormSelectProps) => {
   void size; // Keep for API consistency but not used in rendering
   const selectClasses = ['form-select', error && 'error'].filter(Boolean).join(' ');
   const helperClasses = ['form-helper-text', error && 'error'].filter(Boolean).join(' ');

@@ -1,6 +1,3 @@
-import React from 'react';
-
-// Alert - Different styling approach with inconsistent variants
 interface AlertProps {
   children: React.ReactNode;
   variant?: 'info' | 'success' | 'warning' | 'error' | 'default';
@@ -9,13 +6,13 @@ interface AlertProps {
   showIcon?: boolean;
 }
 
-export const Alert: React.FC<AlertProps> = ({
+export const Alert = ({
   children,
   variant = 'default',
   title,
   onClose,
   showIcon = true,
-}) => {
+}: AlertProps) => {
   const getIcon = () => {
     switch (variant) {
       case 'info': return 'ℹ️';

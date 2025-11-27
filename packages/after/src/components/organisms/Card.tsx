@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface CardProps {
   children?: React.ReactNode;
   title?: string;
@@ -8,13 +6,13 @@ interface CardProps {
   headerActions?: React.ReactNode;
 }
 
-export const Card: React.FC<CardProps> = ({
+export const Card = ({
   children,
   title,
   subtitle,
   variant = 'default',
   headerActions,
-}) => {
+}: CardProps) => {
   const cardClasses = ['card', `card-${variant}`].join(' ');
 
   return (

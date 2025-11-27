@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Checkbox Component - Completely different approach again
 interface FormCheckboxProps {
   name: string;
@@ -11,7 +9,7 @@ interface FormCheckboxProps {
   hint?: string;
 }
 
-export const FormCheckbox: React.FC<FormCheckboxProps> = ({
+export const FormCheckbox = ({
   name,
   checked,
   onChange,
@@ -19,7 +17,7 @@ export const FormCheckbox: React.FC<FormCheckboxProps> = ({
   disabled = false,
   error,
   hint,
-}) => {
+}: FormCheckboxProps) => {
   const wrapperClasses = ['checkbox-wrapper', disabled && 'disabled'].filter(Boolean).join(' ');
   const customClasses = ['checkbox-custom', checked && 'checked', disabled && 'disabled'].filter(Boolean).join(' ');
   const checkmarkClasses = ['checkbox-checkmark', checked && 'visible'].filter(Boolean).join(' ');

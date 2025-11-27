@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Badge } from '../components/atoms';
-import { Alert, Table, Modal } from '../components/organisms';
+import { useState, useEffect } from 'react';
+
+import { Button } from '../components/atoms';
 import { FormInput, FormSelect, FormTextarea } from '../components/molecules';
+import { Alert, Table, Modal } from '../components/organisms';
+import { useFieldValidation } from '../hooks';
 import { userService } from '../services/userService';
 import { postService } from '../services/postService';
+
 import type { User } from '../services/userService';
 import type { Post } from '../services/postService';
+
 import '../styles/components.css';
 
 type EntityType = 'user' | 'post';
 type Entity = User | Post;
 
-export const ManagementPage: React.FC = () => {
+export const ManagementPage = () => {
   const [entityType, setEntityType] = useState<EntityType>('post');
   const [data, setData] = useState<Entity[]>([]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -23,6 +27,22 @@ export const ManagementPage: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const [formData, setFormData] = useState<any>({});
+
+  // ✅ 비즈니스 로직을 커스텀 훅으로 분리
+  const usernameValidation = useFieldValidation({ 
+    fieldType: 'username', 
+    checkBusinessRules: true 
+  });
+  const emailValidation = useFieldValidation({ 
+    fieldType: 'email', 
+    entityType: 'user',
+    checkBusinessRules: true 
+  });
+  const postTitleValidation = useFieldValidation({ 
+    fieldType: 'postTitle', 
+    entityType: 'post',
+    checkBusinessRules: true 
+  });
 
   useEffect(() => {
     loadData();
@@ -417,23 +437,29 @@ export const ManagementPage: React.FC = () => {
                 <FormInput
                   name="username"
                   value={formData.username || ''}
-                  onChange={(value) => setFormData({ ...formData, username: value })}
+                  onChange={(value) => {
+                    setFormData({ ...formData, username: value });
+                    usernameValidation.validate(value);
+                  }}
                   label="사용자명"
                   placeholder="사용자명을 입력하세요"
                   required
                   width="full"
-                  fieldType="username"
+                  error={usernameValidation.error}
                 />
                 <FormInput
                   name="email"
                   value={formData.email || ''}
-                  onChange={(value) => setFormData({ ...formData, email: value })}
+                  onChange={(value) => {
+                    setFormData({ ...formData, email: value });
+                    emailValidation.validate(value);
+                  }}
                   label="이메일"
                   placeholder="이메일을 입력하세요"
                   type="email"
                   required
                   width="full"
-                  fieldType="email"
+                  error={emailValidation.error}
                 />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <FormSelect
@@ -446,7 +472,7 @@ export const ManagementPage: React.FC = () => {
                       { value: 'admin', label: '관리자' },
                     ]}
                     label="역할"
-                    size="md"
+                    size="medium"
                   />
                   <FormSelect
                     name="status"
@@ -458,7 +484,7 @@ export const ManagementPage: React.FC = () => {
                       { value: 'suspended', label: '정지' },
                     ]}
                     label="상태"
-                    size="md"
+                    size="medium"
                   />
                 </div>
               </>
@@ -467,12 +493,15 @@ export const ManagementPage: React.FC = () => {
                 <FormInput
                   name="title"
                   value={formData.title || ''}
-                  onChange={(value) => setFormData({ ...formData, title: value })}
+                  onChange={(value) => {
+                    setFormData({ ...formData, title: value });
+                    postTitleValidation.validate(value);
+                  }}
                   label="제목"
                   placeholder="게시글 제목을 입력하세요"
                   required
                   width="full"
-                  fieldType="postTitle"
+                  error={postTitleValidation.error}
                 />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <FormInput
@@ -495,7 +524,7 @@ export const ManagementPage: React.FC = () => {
                     ]}
                     label="카테고리"
                     placeholder="카테고리 선택"
-                    size="md"
+                    size="medium"
                   />
                 </div>
                 <FormTextarea
@@ -549,23 +578,29 @@ export const ManagementPage: React.FC = () => {
                 <FormInput
                   name="username"
                   value={formData.username || ''}
-                  onChange={(value) => setFormData({ ...formData, username: value })}
+                  onChange={(value) => {
+                    setFormData({ ...formData, username: value });
+                    usernameValidation.validate(value);
+                  }}
                   label="사용자명"
                   placeholder="사용자명을 입력하세요"
                   required
                   width="full"
-                  fieldType="username"
+                  error={usernameValidation.error}
                 />
                 <FormInput
                   name="email"
                   value={formData.email || ''}
-                  onChange={(value) => setFormData({ ...formData, email: value })}
+                  onChange={(value) => {
+                    setFormData({ ...formData, email: value });
+                    emailValidation.validate(value);
+                  }}
                   label="이메일"
                   placeholder="이메일을 입력하세요"
                   type="email"
                   required
                   width="full"
-                  fieldType="email"
+                  error={emailValidation.error}
                 />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <FormSelect
@@ -578,7 +613,7 @@ export const ManagementPage: React.FC = () => {
                       { value: 'admin', label: '관리자' },
                     ]}
                     label="역할"
-                    size="md"
+                    size="medium"
                   />
                   <FormSelect
                     name="status"
@@ -590,7 +625,7 @@ export const ManagementPage: React.FC = () => {
                       { value: 'suspended', label: '정지' },
                     ]}
                     label="상태"
-                    size="md"
+                    size="medium"
                   />
                 </div>
               </>
@@ -599,12 +634,15 @@ export const ManagementPage: React.FC = () => {
                 <FormInput
                   name="title"
                   value={formData.title || ''}
-                  onChange={(value) => setFormData({ ...formData, title: value })}
+                  onChange={(value) => {
+                    setFormData({ ...formData, title: value });
+                    postTitleValidation.validate(value);
+                  }}
                   label="제목"
                   placeholder="게시글 제목을 입력하세요"
                   required
                   width="full"
-                  fieldType="postTitle"
+                  error={postTitleValidation.error}
                 />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <FormInput
@@ -627,7 +665,7 @@ export const ManagementPage: React.FC = () => {
                     ]}
                     label="카테고리"
                     placeholder="카테고리 선택"
-                    size="md"
+                    size="medium"
                   />
                 </div>
                 <FormTextarea

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,9 +8,10 @@ interface ModalProps {
   size?: 'small' | 'medium' | 'large';
   showFooter?: boolean;
   footerContent?: React.ReactNode;
+  footer?: React.ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({
+export const Modal = ({
   isOpen,
   onClose,
   title,
@@ -18,7 +19,8 @@ export const Modal: React.FC<ModalProps> = ({
   size = 'medium',
   showFooter = false,
   footerContent,
-}) => {
+  footer,
+}: ModalProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -48,9 +50,9 @@ export const Modal: React.FC<ModalProps> = ({
         <div className="modal-body">
           {children}
         </div>
-        {showFooter && footerContent && (
+        {(footer || (showFooter && footerContent)) && (
           <div className="modal-footer">
-            {footerContent}
+            {footer || footerContent}
           </div>
         )}
       </div>

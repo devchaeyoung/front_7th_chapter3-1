@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { Badge } from '../atoms/Badge';
 import { Button } from '../atoms/Button';
 
@@ -30,7 +31,7 @@ interface TableProps {
   onRestore?: (id: number) => void;
 }
 
-export const Table: React.FC<TableProps> = ({
+export const Table = ({
   columns,
   data = [],
   striped = false,
@@ -46,7 +47,7 @@ export const Table: React.FC<TableProps> = ({
   onPublish,
   onArchive,
   onRestore,
-}) => {
+}: TableProps) => {
   const [tableData, setTableData] = useState<any[]>(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
