@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@custom-variant dark (&:is(.dark *));
-
 /* 기존 디자인 토큰 (레거시 컴포넌트용) */
 @layer base {
   :root {

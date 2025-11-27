@@ -23,17 +23,47 @@ export default {
         white: tokens.colors.white,
         black: tokens.colors.black,
       },
-      spacing: tokens.spacing,
+      spacing: {
+        ...tokens.spacing,
+        // Button specific spacing for exact matching
+        'btn-sm-y': '6px',
+        'btn-md-y': '10px',
+        'btn-lg-y': '12px',
+      },
       fontFamily: tokens.typography.fontFamily,
       fontSize: tokens.typography.fontSize,
       fontWeight: tokens.typography.fontWeight,
-      lineHeight: tokens.typography.lineHeight,
-      borderRadius: tokens.borderRadius,
+      lineHeight: {
+        ...tokens.typography.lineHeight,
+        'btn': '1.5',
+      },
+      borderRadius: {
+        ...tokens.borderRadius,
+        'btn': '3px',
+      },
       boxShadow: tokens.shadows,
       width: tokens.width,
       height: tokens.height,
     },
   },
+  safelist: [
+    // Button classes - pattern matching for all button classes
+    {
+      pattern: /^(px-|py-|text-\[|leading-\[|rounded-\[|bg-\[|border-\[|hover:enabled:bg-\[).*/,
+    },
+    // Explicit classes
+    'inline-block',
+    'font-sans',
+    'font-normal',
+    'cursor-pointer',
+    'border',
+    'border-solid',
+    'whitespace-nowrap',
+    'disabled:opacity-60',
+    'disabled:cursor-not-allowed',
+    'text-white',
+    'w-full',
+  ],
   plugins: [tailwindcssAnimate],
 }
 
