@@ -58,9 +58,9 @@
 - [ ] 일관된 스타일 시스템 구축
 
 ### 2. Before 패키지 분석
-- [ ] Before 패키지 실행 및 전체 코드 탐색
-- [ ] 스타일링, 컴포넌트 설계, 폼 관리 측면에서 문제점 파악
-- [ ] 개선이 필요한 부분과 그 이유 정리
+- [x] Before 패키지 실행 및 전체 코드 탐색
+- [x] 스타일링, 컴포넌트 설계, 폼 관리 측면에서 문제점 파악
+- [x] 개선이 필요한 부분과 그 이유 정리
 
 ### 3. 컴포넌트 개편
 - [ ] UI와 비즈니스 로직 분리
@@ -84,6 +84,78 @@
 
 ### Before 패키지에서 발견한 문제점
 
+#### 스타일링 측면의 문제점
+
+1. **혼재된 스타일링 방식**
+ ```typescript
+// 인라인 스타일과 CSS 클래스 혼용
+<div style={{ background: '#f0f0f0', padding: '20px' }}>
+   
+/* 하드코딩된 색상 값 */
+.badge-primary { background-color: #1976d2; }
+```
+2. **디자인 토큰 부재**
+- 색상, 간격 등이 일관성 없이 하드코딩됨
+- 테마 변경이나 다크모드 지원 어려움
+
+#### 컴포넌트 설계 측면의 문제점
+
+1. **UI 컴포넌트에 도메인 로직 혼재**
+```typescript
+// Table.tsx - 도메인 타입을 알고 있음
+interface TableProps {
+  entityType?: 'user' | 'post'; // 🚨
+  onEdit?: (item: any) => void;
+  }
+   
+// FormInput.tsx - 비즈니스 규칙 검증
+const validateField = (val: string) => {
+  if (checkBusinessRules) {
+    const reservedWords = ['admin', 'root']; // 🚨
+    if (reservedWords.includes(val.toLowerCase())) {
+      setInternalError('예약된 사용자명입니다');
+      }
+      }
+   };
+   
+// Button.tsx - 비즈니스 규칙 판단
+if (entityType === 'user' && action === 'delete' && entity.role === 'admin') {
+  actualDisabled = true; // 🚨
+  }
+```
+2. **일관성 없는 컴포넌트 API**
+```typescript
+// FormInput: width prop
+width?: 'small' | 'medium' | 'large' | 'full';
+   
+// FormSelect: size prop (다른 이름!)
+size?: 'sm' | 'md' | 'lg';
+```
+3. **타입 안전성 부족**
+```typescript
+const [formData, setFormData] = useState<any>({}); // 🚨
+
+data?: any[];
+onEdit?: (item: any) => void;
+```
+#### 폼 관리 측면의 문제점
+
+1. **폼 상태 관리의 복잡성**
+
+```typescript
+// any 타입으로 관리, 중복된 폼 필드 렌더링 코드
+const [formData, setFormData] = useState<any>({});
+```
+2. **검증 로직의 분산**
+
+```typescript
+// FormInput 컴포넌트 내부에 비즈니스 규칙 검증 로직 포함
+if (checkBusinessRules && entityType === 'user') {
+  if (!val.endsWith('@company.com')) {
+    setInternalError('회사 이메일만 사용 가능합니다');
+  }
+}
+```
 ### 개편 과정에서 집중한 부분
 
 ### 사용한 기술 스택 경험
