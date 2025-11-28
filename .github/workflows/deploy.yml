@@ -40,10 +40,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build application
         run: pnpm build:after
         env:
           NODE_ENV: production
+
+      - name: Build Storybook
+        working-directory: packages/after
+        run: pnpm build-storybook
+        env:
+          STORYBOOK_BASE_PATH: '/front_7th_chapter3-1/storybook/'
+
+      - name: Prepare deployment
+        run: |
+          # Storybook을 dist/storybook 폴더로 이동
+          mv packages/after/storybook-static packages/after/dist/storybook
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
